@@ -35,6 +35,8 @@ class Table extends Component {
         const FullName = inputValue[1].value
         const Skill = inputValue[2].value
         const Email = inputValue[3].value
+        Array.from(document.querySelectorAll("input")).forEach(
+            input => (input.value = ""))
         this.setState({users: [...this.state.users, {Id, FullName, Skill, Email}]})
     }
     handleResetInput = () => {
