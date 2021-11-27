@@ -5,7 +5,7 @@
     padding: 1rem;
 }
 
-.thead tr td{
+.thead tr td {
     color: #33d9b2;
 }
 
@@ -20,18 +20,7 @@ td {
     width: 20%;
 }
 
-.inButton{
-    font-size: 1rem;
-    font-weight: bold;
-    width: 10%;
-    border: none;
-    outline: none;
-    background-color: #ffb142;
-    border-radius: 3px;
-    margin: 2px;
-    cursor: pointer;
-}
-.outButton{
+.Button {
     font-size: 1rem;
     font-weight: bold;
     width: 10%;
@@ -43,7 +32,7 @@ td {
     cursor: pointer;
 }
 
-.inputStyle{
+.inputStyle {
     font-weight: bold;
     width: 19.875%;
     border: none;

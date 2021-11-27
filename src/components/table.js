@@ -14,26 +14,34 @@ class Table extends Component {
         inputValue: inputValue
     }
     handleDeleteUser = (id) => {
-        this.setState({users: this.state.users.filter((user)=> user.Id !== id)})
+        this.setState({users: this.state.users.filter((user) => user.Id !== id)})
     }
     handleUpdateUser = (oldUser) => {
-        const Id = prompt('Pls write Id',oldUser.Id)
-        const FullName = prompt('Pls write FullNam',oldUser.FullName)
-        const Skill = prompt('Pls write Skill',oldUser.Skill)
-        const Email = prompt('Pls write Email',oldUser.Email)
-        this.setState({users : this.state.users.map((user)=> user.Id === oldUser.Id ? {Id,FullName,Skill,Email}: user)})
+        const Id = prompt('Pls write Id', oldUser.Id)
+        const FullName = prompt('Pls write FullNam', oldUser.FullName)
+        const Skill = prompt('Pls write Skill', oldUser.Skill)
+        const Email = prompt('Pls write Email', oldUser.Email)
+        this.setState({
+            users: this.state.users.map((user) => user.Id === oldUser.Id ? {
+                Id,
+                FullName,
+                Skill,
+                Email
+            } : user)
+        })
     }
     handleAddUser = () => {
         const Id = inputValue[0].value
         const FullName = inputValue[1].value
         const Skill = inputValue[2].value
         const Email = inputValue[3].value
-        this.setState({users: [...this.state.users,{Id , FullName, Skill ,Email}]})
+        this.setState({users: [...this.state.users, {Id, FullName, Skill, Email}]})
     }
     handleResetInput = () => {
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = ""))
     }
+
     render() {
         return (
             <table className={'table'}>
@@ -52,8 +60,9 @@ class Table extends Component {
                         <td>{user.FullName}</td>
                         <td>{user.Skill}</td>
                         <td>{user.Email}</td>
-                        <button className={'inButton'} onClick={()=>this.handleUpdateUser(user)}>{'update'}</button>
-                        <button className={'inButton'} onClick={() => this.handleDeleteUser(user.Id)}>{'delete'}</button>
+                        <button className={'Button'} onClick={() => this.handleUpdateUser(user)}>{'update'}</button>
+                        <button className={'Button'}
+                                onClick={() => this.handleDeleteUser(user.Id)}>{'delete'}</button>
                     </tr>
                 ))}
                 </tbody>
@@ -61,8 +70,8 @@ class Table extends Component {
                 <input className={'inputStyle'} type={'text'} placeholder={'FullName ...'}/>
                 <input className={'inputStyle'} type={'text'} placeholder={'Skill ...'}/>
                 <input className={'inputStyle'} type={'text'} placeholder={'Email ...'}/>
-                <button className={'outButton'} onClick={() =>this.handleAddUser()}>{'Add a New Student'}</button>
-                <button className={'outButton'} onClick={() =>this.handleResetInput()}>{'Reset'}</button>
+                <button className={'Button'} onClick={() => this.handleAddUser()}>{'Add a New Student'}</button>
+                <button className={'Button'} onClick={() => this.handleResetInput()}>{'Reset'}</button>
             </table>
         )
     }
