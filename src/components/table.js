@@ -1,47 +1,35 @@
 import {Component} from "react";
 import './table.css'
+import Users from './users/users'
 
 const inputValue = document.getElementsByClassName('inputStyle')
-const users = [
-    {Id: 1, FullName: 'Soheil Saedi', Skill: 'Developer', Email: 'saedi852@gmail.com'},
-    {Id: 2, FullName: 'Reza Saedi', Skill: 'Developer', Email: 'saedi853@gmail.com'},
-    {Id: 3, FullName: 'Sobhan Saedi', Skill: 'Developer', Email: 'saedi854@gmail.com'}
-]
+
 
 class Table extends Component {
     state = {
-        users: users,
+        users: Users,
         inputValue: inputValue
     }
     handleDeleteUser = (id) => {
         this.setState({users: this.state.users.filter((user) => user.Id !== id)})
     }
     handleUpdateUser = (oldUser) => {
-        const Id = prompt('Pls write Id', oldUser.Id)
-        const FullName = prompt('Pls write FullNam', oldUser.FullName)
-        const Skill = prompt('Pls write Skill', oldUser.Skill)
-        const Email = prompt('Pls write Email', oldUser.Email)
+        const [Id, FullName, Skill, Email] = [prompt('Pls write Id', oldUser.Id), prompt('Pls write FullNam', oldUser.FullName), prompt('Pls write Skill', oldUser.Skill), prompt('Pls write Email', oldUser.Email)]
         this.setState({
-            users: this.state.users.map((user) => user.Id === oldUser.Id ? {
-                Id,
-                FullName,
-                Skill,
-                Email
-            } : user)
+            users: this.state.users.map((user) => user.Id === oldUser.Id ? {Id, FullName, Skill, Email} : user)
         })
-    }
-    handleAddUser = () => {
-        const Id = inputValue[0].value
-        const FullName = inputValue[1].value
-        const Skill = inputValue[2].value
-        const Email = inputValue[3].value
-        Array.from(document.querySelectorAll("input")).forEach(
-            input => (input.value = ""))
-        this.setState({users: [...this.state.users, {Id, FullName, Skill, Email}]})
     }
     handleResetInput = () => {
         Array.from(document.querySelectorAll("input")).forEach(
             input => (input.value = ""))
+    }
+    handleAddUser = () => {
+        if (inputValue[1].value === '' || inputValue[0].value === '' || inputValue[2].value === '' || inputValue[3].value === '') {
+            return alert('pls fill all input')
+        }
+        const [Id, FullName, Skill, Email] = [inputValue[0].value, inputValue[1].value, inputValue[2].value, inputValue[3].value]
+        this.handleResetInput()
+        this.setState({users: [...this.state.users, {Id, FullName, Skill, Email}]})
     }
 
     render() {
